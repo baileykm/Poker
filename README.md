@@ -3,7 +3,7 @@
 
 This is a course example for *"Application Development Technology"*, powered by Bailey :)
 
-Server-side browser push technologies have been around for a while in one way or another, ranging from from crude browser polling to Flash enabled frameworks. There are so many evolution and mechanics of server-push technologies, including:
+Server-side browser push technologies have been around for a while in one way or another, ranging from crude browser polling to Flash enabled frameworks. There are so many evolution and mechanics of server-push technologies, including:
 
  - Server streaming
  - Polling and long Polling
