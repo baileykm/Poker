@@ -1,0 +1,135 @@
+<html ng-app="app"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Poker</title>
+
+  <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="js/vendor/jquery-confirm/jquery-confirm.css"/>
+  <link rel="stylesheet" href='js/vendor/angularjs-toaster/toaster.css'/>
+  
+  <link href="css/index.css" rel="stylesheet">
+  
+  <script type="text/javascript" src="js/vendor/swfobject.js"></script>
+  <script type="text/javascript" src="js/vendor/web_socket.js"></script>
+  
+  <script type="text/javascript" src="js/vendor/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
+  
+  <!-- jQuery confirm and Our Extension -->
+  
+  <script type="text/javascript" src="js/vendor/angular.min.js"></script>
+  <script type="text/javascript" src="js/vendor/angular-animate.min.js"></script>
+  <script type="text/javascript" src="js/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script type="text/javascript" src="js/vendor/angularjs-toaster/toaster.js"></script>
+
+
+	<script type="text/javascript" src="js/vendor/jquery-confirm/jquery-confirm.js"></script>
+	<script type="text/javascript" src="js/vendor/jquery-confirm/jquery-confirm-bailey.js"></script>
+  
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/GameController.js"></script>
+  <script type="text/javascript" src="js/gameService.js"></script>
+  <script type="text/javascript" src="js/RoomController.js"></script>
+
+</head>
+
+<body ng-controller="GameController">
+	
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+  		<div class="container-fluid">
+    		<div class="navbar-header">
+			  	<a class="navbar-brand" href="#">
+					<span class="glyphicon glyphicon-grain"></span>
+			  	</a>
+			</div>
+			<p class="navbar-text navbar-left">
+				<strong style="color:#fff;">Poker</strong>
+				<em>- An Example for Web Application Programming / </em>
+					Powered by
+				<a href="mailto:baileiz@163.com" class="navbar-link">Bailey</a>
+			</p>
+			<p class="navbar-text navbar-right m-r">
+				<a ng-if="!nickname" href="#" class="btn btn-info btn-xs" ng-click="onSignInClicked()">Sign in</a>
+				<span ng-if="nickname">
+					<span class="label">Welcome, {{nickname}}</span>
+					<a href="#" class="btn btn-warning btn-xs" ng-click="onSignOutClicked()">Sign out</a>
+				</span>
+			</p>
+  		</div>
+	</nav>
+	<div class="container-fluid">
+		<div id="room-container" class="row" >
+			<button id="room-list-collapser" type="button" class="btn btn-sm"
+					data-toggle="collapse" data-target="#room-list">
+				<span class="glyphicon glyphicon-home"></span>
+			</button>
+			<ul id="room-list" class="collapse clearfix">
+				<li ng-repeat="r in roomList" ng-click="onRoomSelect(r)">
+					<a href="#" class="{{r.roomStatus}}">{{r.roomId}}</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div id="desktop" ng-controller="RoomController">
+		<h4 id="room-name">{{roomId}}</h4>
+		<div id="others-area" class="clearfix">
+			<div id="left-area" class="clearfix pull-left">
+				<div class="portrait pull-left">
+					<h5 class="player-name {{leftInfo.status}}">{{leftInfo.nickname}}</h5>
+				</div>
+				<ul class="pull-left card-list-v">
+					<li class="card card-hide" ng-repeat="c in leftInfo.hand"></li>
+				</ul>
+				<ul class="pull-left card-list-h clearfix">
+					<li class="card card-show" ng-repeat="c in leftInfo.out"
+						style="background-position:{{-71 * (c.p - 1)}}px {{-96 * (c.k-1)}}px;"
+					></li>
+					<li ng-if="leftInfo.isPass" class="pass"></li>
+				</ul>
+			</div>
+			
+			<div id="right-area" class="clearfix pull-right">
+				<div id="portrait-right" class="portrait pull-right">
+					<h5 class="player-name {{rightInfo.status}}">{{rightInfo.nickname}}</h5>
+				</div>
+				<ul id="player-right-hand" class="pull-right card-list-v">
+					<li class="card card-hide" ng-repeat="c in rightInfo.hand"></li>
+				</ul>
+				<ul id="player-right-out" class="pull-right card-list-h clearfix">
+					<li class="card card-show" ng-repeat="c in rightInfo.out"
+						style="background-position:{{-71 * (c.p - 1)}}px {{-96 * (c.k-1)}}px;"
+					></li>
+					<li ng-if="rightInfo.isPass" class="pass"></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div id="self-area">
+			<ul id="player-self-out" class="card-list-h clearfix">
+				<li class="card card-show" ng-repeat="c in selfInfo.out"
+					style="background-position:{{-71 * (c.p - 1)}}px {{-96 * (c.k-1)}}px;"
+				></li>
+				<li ng-if="selfInfo.isPass" class="pass"></li>
+			</ul>
+			<div class="clearfix">
+				<div id="portrait-self" class="portrait pull-left">
+					<h5 class="player-name {{selfInfo.status}}">{{selfInfo.nickname}}</h5>
+				</div>
+				<ul id="player-self-hand" class="pull-left card-list-h">
+					<li class="card card-show" ng-repeat="c in selfInfo.hand"
+						style="background-position:{{-71 * (c.p - 1)}}px {{-96 * (c.k-1)}}px;"
+						ng-class="{'card-selected':c.selected}"
+						ng-click="myCardClicked(c)"
+					></li>			
+				</ul>
+				<div class="pull-right">
+					<img ng-if="selfInfo.status=='active'" class="button" src="img/btn-show.png" ng-click="onShowCards()"/>
+					<img ng-if="selfInfo.status=='active' && !roomModel.isRoundBeginning" class="button" src="img/btn-pass.png" ng-click="onPass()"/>
+					<img ng-if="selfInfo.status=='waiting'" class="button" src="img/btn-ready.png" ng-click="onHandUp()"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':true, 'time-out': 3000}"></toaster-container>
+</body>
+</html>

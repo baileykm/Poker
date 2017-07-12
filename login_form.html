@@ -1,0 +1,31 @@
+<!-- 登录对话框(模态框) -->
+
+		<div class="modal-header">
+			<div class="modal-header">
+				<button type="button" class="close" ng-click="cancel()">
+					<span>&times;</span>
+				</button>
+				<h4 class="modal-title">Login</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="loginName">Nickname</label>
+						<input id="loginName" type="text" class="form-control" ng-model="nickname"
+								placeholder="Please input your nickname">
+					</div>
+					<div class="form-group">
+						<label for="loginPassword">Password</label>
+						<input id="loginPassword" type="password" class="form-control" ng-model="password"
+								placeholder="Please input your password">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-default" ng-click="cancel()">
+				Close
+			</button>
+			<button type="button" class="btn btn-primary" ng-click="signIn()">
+				Sign in
+			</button>
+		</div>

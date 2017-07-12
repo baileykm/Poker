@@ -1,0 +1,48 @@
+.m-t-lg {margin-top:15px;}
+.m-l {margin-left:8px;}
+.m-r {margin-right:8px;}
+.m-r-xs {margin-right:3px;}
+
+body {padding-top:50px; background:url(../img/desktop.png) #530000 no-repeat center center fixed;}
+
+#room-list-collapser {position:fixed;right:0;top:50;}
+#room-list {background:#000; padding:0px 10px 10px 10px; list-style:none;border-bottom:1px solid #333; }
+#room-list li {float:left; margin:0px 15px 10px 15px; }
+#room-list li a{ display:block; padding-top:70px;text-align:center;border:1px solid transparent; border-radius:5px; color:#ddd; text-decoration:none;}
+#room-list li a.waiting { background:url(../img/room_waiting.png) no-repeat; width:60px; height:90px;}
+#room-list li a.playing { background:url(../img/room_playing.png) no-repeat; width:60px; height:90px;}
+#room-list li a:hover { color: #fff; font-weight:bold;}
+
+#desktop {width:1000px; margin:30px auto;}
+#room-name{color:#F8C37A;}
+
+.portrait {width:90px; padding-top:15px; height:90px;}
+.portrait .player-name {color:#eee; padding-top:100px; text-align:center;}
+.portrait .nobody {background:url(../img/nobody.png) no-repeat center center;}
+.portrait .waiting {background:url(../img/waiting.png) no-repeat center center;}
+.portrait .ready {background:url(../img/ready.png) no-repeat center center;}
+.portrait .active {background:url(../img/active.png) no-repeat center center;}
+
+.card-list-v {list-style:none; margin:0px 30px; padding:0px; width:71px;}
+.card-list-h {list-style:none; padding:0px; margin:0px; width:250px; min-width:250px;}
+#others-area .card-list-h {padding-top:15px;}
+
+#self-area {width:600px; margin:50px auto;}
+
+#player-self-out{margin:0px auto 30px auto; min-height:71px;}
+#player-self-hand{margin:0px 30px; width:360px; height:100px;}
+
+.card {background:url(../img/cards.png);width:71px; height:96px;}
+.card-hide {background-position: -142px -384px;}
+.card-hide + .card-hide {margin-top:-89px;}
+.card-show {float:left; background-position: -142px 0px;}
+.card-show + .card-show {margin-left:-56px;}
+.pass {background:url(../img/pass.png);width:71px; height:72px;}
+
+#player-self-hand .card {cursor:pointer;}
+.card-selected { margin-top:-20px;}
+
+#self-area .button { width:64px; height:22px; margin-right:5px; cursor:pointer; margin-bottom:5px;}
+
+
+

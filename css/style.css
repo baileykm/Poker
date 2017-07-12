@@ -1,0 +1,39 @@
+* { margin:0px; padding:0px; font-size:12px;}
+
+
+
+
+body {background-color:#002F4A;}
+#desktop {width:1000px; height:600px; margin:10px auto; padding:0px 40px; background-image:url(../img/desktop.jpg);}
+#others-area {height:300px;}
+#self-area { margin-top:-70px;}
+
+.clear {overflow:hidden;}
+.m-t {margin-top:20px;}
+.m-t-l {margin-top:50px;}
+
+.portrait { width:64px; height:64px; color:#fff; padding-top:70px; background-repeat:no-repeat;}
+
+#portrait-self {margin:15px auto; cursor:pointer; background-image:url(../img/nobody.png);}
+#portrait-left {float:left; margin:15px;}
+#portrait-right {float:right; margin:15px;}
+
+
+.button { width:128px; height:48px; float:right; margin-right:5px; cursor:pointer;}
+
+#player-left-hand, #player-left-out {float:left; margin-right:20px; }
+
+#player-right-hand, #player-right-out {float:right; margin-left:20px; }
+
+#player-left-out, #player-right-out {padding-top:30px;}
+
+#player-self-out, #player-self-hand {width:500px; min-height:100px; margin:10px auto;}
+#player-self-hand {padding-top:20px;}
+
+.card-hide {width:71px; height:96px;background-image:url("../img/back.gif");}
+.card-hide + .card-hide {margin-top:-85px;}
+
+.card-show {width:71px; height:96px; float:left; background:url("../img/1-3.gif");}
+.card-show + .card-show {margin-left:-56px;}
+
+.card-selected { margin-top:-20px;}
